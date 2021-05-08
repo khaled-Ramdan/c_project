@@ -7,13 +7,8 @@ struct Node {
 	char type[30];
 	char about[100];
 	int price;
-<<<<<<< HEAD
-    int id;
-    struct Node *next;
-=======
-    	int id;
-    struct node *next;
->>>>>>> 791aebccd50fad8c6cd1c2a154b4bab1e7bc37b1
+   	int id;
+    	struct Node *next;
 };
 typedef struct Node node;
 struct Node *head = NULL;
