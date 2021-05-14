@@ -14,6 +14,7 @@ typedef struct Node node;
 struct Node *head = NULL;
 struct Node *current = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
+int countbooks( int id);
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -50,3 +51,26 @@ void sortedAppend(int id, int price,char*name,char*type,char*about)
       newnode->next=currentPtr;
    }
 }
+
+int countbooks(int id)
+{
+int i;
+int c = 0;
+struct node* temp = head;
+while (temp!=NULL)
+{
+	if (temp->id == id)
+	{
+		break;
+	}
+	temp = temp->next;
+}
+for (i =temp->id; temp != NULL&&temp->id == id; i++)
+	{
+		c++;
+		temp = temp->next;
+	}
+printf("Number of copies:");
+return c;
+}
+
