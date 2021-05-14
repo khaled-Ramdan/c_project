@@ -12,7 +12,6 @@ struct Node {
 };
 typedef struct Node node;
 struct Node *head = NULL;
-struct Node *current = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 int countbooks( int id);
 void main() {
