@@ -65,6 +65,7 @@ while (temp!=NULL)
 	}
 	temp = temp->next;
 }
+	if(temp==NULL)return c;
 for (i =temp->id; temp != NULL&&temp->id == id; i++)
 	{
 	c++;
