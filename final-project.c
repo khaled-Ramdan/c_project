@@ -7,23 +7,13 @@ struct Node {
 	char type[30];
 	char about[100];
 	int price;
-<<<<<<< HEAD
-    	int id;
-    struct node *next;
-=======
    	int id;
     	struct Node *next;
->>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
 };
 typedef struct Node node;
 struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
-<<<<<<< HEAD
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
-=======
-int countbooks( int id);
-void printList();
->>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -60,7 +50,6 @@ void sortedAppend(int id, int price,char*name,char*type,char*about)
       newnode->next=currentPtr;
    }
 }
-<<<<<<< HEAD
 void checkNameWithId(int id, int price,char*name,char*type,char*about)
 {
    node*current=head;
@@ -115,45 +104,3 @@ void checkNameWithId(int id, int price,char*name,char*type,char*about)
    }
    }
 }
-=======
-
-int countbooks(int id)
-{
-int i;
-int c = 0;
-struct node* temp = head;
-while (temp!=NULL)
-{
-	if (temp->id == id)
-	{
-	   break;
-	}
-	temp = temp->next;
-}
-	if(temp==NULL)return c;
-for (i =temp->id; temp != NULL&&temp->id == id; i++)
-	{
-	c++;
-	temp = temp->next;
-    }
-printf("Number of copies:");
-return c;
-}
-
-void printList()
-{
-   struct node *ptr = head;
-   int cpyNum=1;
-   while(ptr->next != NULL) {
-      if(ptr->id!=ptr->next->id){//don't print more than with same id
-         printf("book name: %-30s\tid: %3d\t Number of copies: %3d\n",ptr->name,ptr->id,cpyNum);   
-         printf("\n");
-         cpyNum=1;//to reset its value to the default value to began to count
-      }
-	  else { cpyNum++;}//count number of copies
-      ptr=ptr->next;
-   }
-   printf("book name: %-30s\tid: %3d\t Number of copies: %3d\n",ptr->name,ptr->id,cpyNum);  
-   return;
-}
->>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
