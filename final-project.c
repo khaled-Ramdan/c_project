@@ -7,18 +7,14 @@ struct Node {
 	char type[30];
 	char about[100];
 	int price;
-<<<<<<< HEAD
-    int id;
-    struct Node *next;
-=======
     	int id;
     struct node *next;
->>>>>>> 791aebccd50fad8c6cd1c2a154b4bab1e7bc37b1
 };
 typedef struct Node node;
 struct Node *head = NULL;
 struct Node *current = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
+void checkNameWithId(int id, int price,char*name,char*type,char*about);
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -53,5 +49,59 @@ void sortedAppend(int id, int price,char*name,char*type,char*about)
    else{
       previousPtr->next=newnode;
       newnode->next=currentPtr;
+   }
+}
+void checkNameWithId(int id, int price,char*name,char*type,char*about)
+{
+   node*current=head;
+   int flagName;
+   char temp[30];
+   if(head==NULL)
+   {
+       int cpyNum;
+         printf("Append\t");
+         printf("Enter number of copies: ");scanf("%d",&cpyNum);
+         for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+   }
+   else{
+   while (current!=NULL)
+   {
+      //check on string
+   strcpy(temp,current->name);
+   for(int i=0;name[i]!='\0'&&current!=NULL;i++)
+   {
+      if(temp[i]==name[i])flagName=1;
+      else
+      {
+         flagName=0;
+         break;
+      }
+   }  
+   //check
+     if(id==current->id && flagName==0)
+      {
+         printf("Invalid value,this id exists for another book name\n");
+         //short menu display return to main or same process
+         //......
+         break;
+      }
+      else if(flagName==1 && id!=current->id)
+      {
+         printf("Invalid value,this name exists for another book id\n");
+         //short menu display return to main or same process
+         //........
+         break;
+      }
+      else
+      {
+         int cpyNum;
+         
+         printf("Enter number of copies: ");scanf("%d",&cpyNum);
+         for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+         printf("Book added successfuly\n");
+         break;
+      }
+      current=current->next;
+   }
    }
 }
