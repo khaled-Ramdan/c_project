@@ -15,6 +15,8 @@ struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
 int countbooks( int id);
+void delete(int id);
+void delete_book();
 void printList();
 void main() {
    //temporary used elements
@@ -146,3 +148,81 @@ void checkNameWithId(int id, int price,char*name,char*type,char*about)
    }
    }
 }
+
+void delete(int id) 
+{
+   node* current = head;
+   node* previous = NULL;
+   if(head == NULL) {
+      printf("List is Empty!!!\n");
+      return;
+   }
+   while(current->id != id) {
+      if(current->next == NULL) {
+         printf("Book not found!!!\n");
+         return;
+      } else {
+         previous = current;
+         current = current->next;
+      }
+   }
+   if(current == head) {
+      head = head->next;
+   } else {
+      previous->next = current->next;
+   }
+ free(current);
+   return;
+}
+
+void delete_book()
+  {
+     int x,id;
+     int cpyNum=0;
+     char name[30];
+    puts("\t\t\t\t\tBy any way you want to delete" );
+     do{
+        printf("please, Enter number [1] to delete by id oR number [2] to delete by name:\n\tchoosen number: ");
+        scanf("%d",&x);
+     }
+     while( x != 1 && x != 2);
+    if( x == 1)
+    {
+        printf("please, Enter the id to delete: ");
+        scanf("%d",&id );
+        printf("How many copies? : ");
+        scanf("%d",&cpyNum);
+      int count=countbooks(id);
+      if (count==0)printf("Id not found!!\n");
+      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
+      else{
+      for(int i=0;i<cpyNum;i++)delete(id);
+      puts("The deletion process was successful.");
+      }
+    }
+
+    else if ( x == 2)
+    {
+      printf("please, Enter the name to delete: ");
+      scanf("\n");scanf("%[^\n]",name);
+      id = returnId(name);
+      if(id==-1){
+         printf("book not found!!\n");
+      }
+      else
+      {
+      printf("How many copies? : ");
+      scanf("%d",&cpyNum);
+      int count=countbooks(id);
+      if (count==0)printf("Id not found!!");
+      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
+      else{
+      for(int i=0;i<cpyNum;i++)delete(id);
+      puts("The deletion process was successful.");
+      }
+      }
+    }
+
+  }
+
+
