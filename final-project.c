@@ -7,14 +7,23 @@ struct Node {
 	char type[30];
 	char about[100];
 	int price;
+<<<<<<< HEAD
+    	int id;
+    struct node *next;
+=======
    	int id;
     	struct Node *next;
+>>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
 };
 typedef struct Node node;
 struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
+<<<<<<< HEAD
+void checkNameWithId(int id, int price,char*name,char*type,char*about);
+=======
 int countbooks( int id);
 void printList();
+>>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -51,6 +60,62 @@ void sortedAppend(int id, int price,char*name,char*type,char*about)
       newnode->next=currentPtr;
    }
 }
+<<<<<<< HEAD
+void checkNameWithId(int id, int price,char*name,char*type,char*about)
+{
+   node*current=head;
+   int flagName;
+   char temp[30];
+   if(head==NULL)
+   {
+       int cpyNum;
+         printf("Append\t");
+         printf("Enter number of copies: ");scanf("%d",&cpyNum);
+         for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+   }
+   else{
+   while (current!=NULL)
+   {
+      //check on string
+   strcpy(temp,current->name);
+   for(int i=0;name[i]!='\0'&&current!=NULL;i++)
+   {
+      if(temp[i]==name[i])flagName=1;
+      else
+      {
+         flagName=0;
+         break;
+      }
+   }  
+   //check
+     if(id==current->id && flagName==0)
+      {
+         printf("Invalid value,this id exists for another book name\n");
+         //short menu display return to main or same process
+         //......
+         break;
+      }
+      else if(flagName==1 && id!=current->id)
+      {
+         printf("Invalid value,this name exists for another book id\n");
+         //short menu display return to main or same process
+         //........
+         break;
+      }
+      else
+      {
+         int cpyNum;
+         
+         printf("Enter number of copies: ");scanf("%d",&cpyNum);
+         for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+         printf("Book added successfuly\n");
+         break;
+      }
+      current=current->next;
+   }
+   }
+}
+=======
 
 int countbooks(int id)
 {
@@ -91,3 +156,4 @@ void printList()
    printf("book name: %-30s\tid: %3d\t Number of copies: %3d\n",ptr->name,ptr->id,cpyNum);  
    return;
 }
+>>>>>>> 436803d82e277e9e310520e81aa822e598e35e49
