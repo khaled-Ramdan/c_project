@@ -15,7 +15,7 @@ struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
 int countbooks( int id);
-void delete( int id);
+void Delete( int id);
 void delete_book();
 void printList();
 void main() {
@@ -149,7 +149,7 @@ void checkNameWithId(int id, int price,char*name,char*type,char*about)
    }
 }
 
-void delete(int id) 
+void Delete(int id) 
 {
    node* current = head;
    node* previous = NULL;
@@ -196,7 +196,7 @@ void delete_book()
       if (count==0)printf("Id not found!!\n");
       else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
       else{
-      for(int i=0;i<cpyNum;i++)delete(id);
+      for(int i=0;i<cpyNum;i++)Delete(id);
       puts("The deletion process was successful.");
       }
     }
@@ -217,7 +217,7 @@ void delete_book()
       if (count==0)printf("Id not found!!");
       else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
       else{
-      for(int i=0;i<cpyNum;i++)delete(id);
+      for(int i=0;i<cpyNum;i++)Delete(id);
       puts("The deletion process was successful.");
       }
       }
