@@ -15,7 +15,7 @@ struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
 int countbooks( int id);
-void delete(int id);
+void delete( int id);
 void delete_book();
 void printList();
 void main() {
@@ -80,7 +80,7 @@ return c;
 
 void printList()
 {
-   struct node *ptr = head;
+   node *ptr = head;
    int cpyNum=1;
    while(ptr->next != NULL) {
       if(ptr->id!=ptr->next->id){//don't print more than with same id
