@@ -98,54 +98,40 @@ void checkNameWithId(int id, int price,char*name,char*type,char*about)
 {
    node*current=head;
    int flagName;
-   char temp[30];
    if(head==NULL)
    {
        int cpyNum;
-         printf("Append\t");
          printf("Enter number of copies: ");scanf("%d",&cpyNum);
          for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+          printf("Book is added successfuly\n");
    }
    else{
    while (current!=NULL)
    {
-      //check on string
-   strcpy(temp,current->name);
-   for(int i=0;name[i]!='\0'&&current!=NULL;i++)
-   {
-      if(temp[i]==name[i])flagName=1;
-      else
-      {
-         flagName=0;
-         break;
-      }
-   }  
+   //check on string
+    flagName=strCompare(current->name,name);//compare two strings
    //check
-     if(id==current->id && flagName==0)
+     if(id==current->id && flagName==0)//same id different name
       {
          printf("Invalid value,this id exists for another book name\n");
          //short menu display return to main or same process
          //......
-         break;
+         return;
       }
-      else if(flagName==1 && id!=current->id)
+      else if(flagName==1 && id!=current->id)//same name different id
       {
          printf("Invalid value,this name exists for another book id\n");
          //short menu display return to main or same process
          //........
-         break;
-      }
-      else
-      {
-         int cpyNum;
-         
-         printf("Enter number of copies: ");scanf("%d",&cpyNum);
-         for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
-         printf("Book added successfuly\n");
-         break;
+         return;
       }
       current=current->next;
    }
+      int cpyNum;
+      printf("Enter number of copies: ");scanf("%d",&cpyNum);
+      for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
+      printf("Book added successfuly\n");
+      return;
    }
 }
 
@@ -153,23 +139,23 @@ void Delete(int id)
 {
    node* current = head;
    node* previous = NULL;
-   if(head == NULL) {
+   if(head == NULL) {//if list is empty
       printf("List is Empty!!!\n");
       return;
    }
-   while(current->id != id) {
-      if(current->next == NULL) {
+   while(current->id != id) { //navigate through list
+      if(current->next == NULL) { //if it is last node
          printf("Book not found!!!\n");
          return;
       } else {
-         previous = current;
-         current = current->next;
+         previous = current;//store reference to current link
+         current = current->next;//move to next link
       }
    }
-   if(current == head) {
-      head = head->next;
+   if(current == head) {//found a match, update the link
+      head = head->next;//change first to point to next link
    } else {
-      previous->next = current->next;
+      previous->next = current->next;  //bypass the current link
    }
  free(current);
    return;
@@ -185,16 +171,16 @@ void delete_book()
         printf("please, Enter number [1] to delete by id oR number [2] to delete by name:\n\tchoosen number: ");
         scanf("%d",&x);
      }
-     while( x != 1 && x != 2);
+     while( x != 1 && x != 2);//user can choose only 1 or 2
     if( x == 1)
     {
         printf("please, Enter the id to delete: ");
         scanf("%d",&id );
         printf("How many copies? : ");
         scanf("%d",&cpyNum);
-      int count=countbooks(id);
+      int count=countbooks(id);//git number of copies of abooks
       if (count==0)printf("Id not found!!\n");
-      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
+      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");//negative number or more than exisit books
       else{
       for(int i=0;i<cpyNum;i++)Delete(id);
       puts("The deletion process was successful.");
@@ -205,7 +191,7 @@ void delete_book()
     {
       printf("please, Enter the name to delete: ");
       scanf("\n");scanf("%[^\n]",name);
-      id = returnId(name);
+      id = returnId(name);//get the id of the name
       if(id==-1){
          printf("book not found!!\n");
       }
