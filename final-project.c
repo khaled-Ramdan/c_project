@@ -20,6 +20,9 @@ void delete_book();
 void printList();
 void searchWithId(int id);
 int returnId(const char*name);
+int length();
+ bool strCompare(const char* str1,const char* str2);
+
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -224,6 +227,7 @@ void searchWithId(int id) {
    printf("name: %-30s\ttype: %-12s\tprice: %2d\tid: %3d\tabout?: %s\n",current->name,current->type,current->price,current->id,current->about);
    return;
 }
+	
 int returnId(const char*name)
 {
    node*current=head;
@@ -236,5 +240,32 @@ int returnId(const char*name)
    }
    if(flag==1)return current->id;
    else return -1;
+}
+
+ bool strCompare(const char* str1,const char* str2)
+{
+   int flag=0;
+   for(int i=0;str2[i]!='\0';i++)
+   {
+      if(str2[i]==str1[i])flag=1;
+      else
+      {
+         flag=0;
+         return flag;
+      }
+   }
+   return flag;  
+}
+
+int length()
+{
+   int length = 0;
+   node *current;
+ 
+   for(current = head; current != NULL; current = current->next) {
+      length++;
+   }
+ 
+   return length;
 }
 }
