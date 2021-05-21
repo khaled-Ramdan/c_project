@@ -18,6 +18,8 @@ int countbooks( int id);
 void Delete( int id);
 void delete_book();
 void printList();
+void searchWithId(int id);
+int returnId(const char*name);
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -208,7 +210,31 @@ void delete_book()
       }
       }
     }
-
-  }
-
-
+void searchWithId(int id) {
+   node* current = head;
+   if(head == NULL) {  //if list is empty
+      printf("There is no data, list is empty\n");
+      return;
+   }
+   while(current->id != id) {  //navigate through list
+      if(current->next == NULL) {printf("Book not found\n");return;} //if it is last node
+      else current = current->next;//go to next link
+   }
+   //if data found, display the current node
+   printf("name: %-30s\ttype: %-12s\tprice: %2d\tid: %3d\tabout?: %s\n",current->name,current->type,current->price,current->id,current->about);
+   return;
+}
+int returnId(const char*name)
+{
+   node*current=head;
+   bool flag=0;
+   while (current!=NULL)
+   {
+   flag = strCompare(name,current->name);
+      if(flag==1)break;   
+      current=current->next;
+   }
+   if(flag==1)return current->id;
+   else return -1;
+}
+}
