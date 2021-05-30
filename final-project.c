@@ -21,8 +21,8 @@ void printList();
 void searchWithId(int id);
 int returnId(const char*name);
 int length();
- bool strCompare(const char* str1,const char* str2);
-
+bool strCompare(const char* str1,const char* str2);
+void fileReading();
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -32,6 +32,25 @@ void main() {
     int tmpId;
     node*tmpNode;
     //reading from the file
+}
+void fileReading()
+{
+	//temporary variables to be read
+   char tmpName[30];
+   char tmpType[30];
+   char tmpAbout[100];
+   int tmpPrice;
+   int tmpId;
+   FILE* myfile;
+   myfile= fopen("record.txt","rb");//file reading
+   if (myfile == NULL)
+   printf("Eror oppening the file \n");
+   else{
+       while(fread(&tmpId,sizeof(tmpId),1,myfile)==1&&fread(&tmpPrice,sizeof(tmpPrice),1,myfile)==1&&fread(&tmpName,sizeof(tmpName),1,myfile)==1&&fread(&tmpType,sizeof(tmpType),1,myfile)==1&&fread(&tmpAbout,sizeof(tmpAbout),1,myfile)==1){
+       sortedAppend(tmpId,tmpPrice,tmpName,tmpType,tmpAbout);
+       }
+   }
+   fclose(myfile);
 }
 void sortedAppend(int id, int price,char*name,char*type,char*about)
 {
