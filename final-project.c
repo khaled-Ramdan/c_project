@@ -311,5 +311,5 @@ void addBook()
 		printf("\t\t\t[1] = add another book.\n\t\t\t[other] = finish\n\t\t\tchoosen way: ");
       scanf("\n%d",&c);
       do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
-	}while ( c=='y' );
+	}while ( c== 1 );
 }
