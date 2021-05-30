@@ -14,6 +14,7 @@ typedef struct Node node;
 struct Node *head = NULL;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
+void addBook();
 int countbooks( int id);
 void Delete( int id);
 void delete_book();
@@ -288,4 +289,27 @@ int length()
  
    return length;
 }
+}
+void addBook()
+{
+   int c;
+   char ch;
+   char tmpName[30];
+	char tmpType[30];
+	char tmpAbout[100];
+	int tmpPrice;
+   int tmpId;
+   printf("\t\t\t\tAdding books\n");
+   do
+	{
+		printf("Enter name: ");scanf("\n");scanf("%[^\n]",tmpName);
+		printf("Enter id: ");scanf("%d",&tmpId);
+      printf("Enter price: ");scanf("%d",&tmpPrice);
+      printf("Enter type: ");scanf("\n");scanf("%[^\n]",tmpType);
+      printf("Enter Further information: ");scanf("\n");scanf("%[^\n]",tmpAbout);
+      checkNameWithId(tmpId,tmpPrice,tmpName,tmpType,tmpAbout);
+		printf("\t\t\t[1] = add another book.\n\t\t\t[other] = finish\n\t\t\tchoosen way: ");
+      scanf("\n%d",&c);
+      do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
+	}while ( c=='y' );
 }
