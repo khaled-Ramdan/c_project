@@ -232,6 +232,7 @@ void delete_book()
       }
       }
     }
+}
 void searchWithId(int id) {
    node* current = head;
    if(head == NULL) {  //if list is empty
