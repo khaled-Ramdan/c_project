@@ -188,27 +188,28 @@ void Delete(int id)
 
 void delete_book()
   {
-     int x,id;
+       int x,id;
      int cpyNum=0;
      char name[30];
     puts("\t\t\t\t\tBy any way you want to delete" );
      do{
-        printf("please, Enter number [1] to delete by id oR number [2] to delete by name:\n\tchoosen number: ");
+        printf("\t\t\t[1] Delete by id\n\t\t\t[2] to delete by name\n\tchoosen number: ");
         scanf("%d",&x);
      }
-     while( x != 1 && x != 2);//user can choose only 1 or 2
+     while( x != 1 && x != 2);
     if( x == 1)
     {
         printf("please, Enter the id to delete: ");
         scanf("%d",&id );
         printf("How many copies? : ");
         scanf("%d",&cpyNum);
-      int count=countbooks(id);//git number of copies of abooks
+      int count=countbooks(id);
       if (count==0)printf("Id not found!!\n");
-      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");//negative number or more than exisit books
+      else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
       else{
       for(int i=0;i<cpyNum;i++)Delete(id);
-      puts("The deletion process was successful.");
+      printf("\tRemaning Number of copies: %d\n",countbooks(id));
+      puts("\t\t\tThe deletion process was successful.");
       }
     }
 
@@ -216,7 +217,7 @@ void delete_book()
     {
       printf("please, Enter the name to delete: ");
       scanf("\n");scanf("%[^\n]",name);
-      id = returnId(name);//get the id of the name
+      id = returnId(name);
       if(id==-1){
          printf("book not found!!\n");
       }
@@ -229,10 +230,12 @@ void delete_book()
       else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
       else{
       for(int i=0;i<cpyNum;i++)Delete(id);
-      puts("The deletion process was successful.");
+      printf("\tRemaning Number of copies: %d\n",countbooks(id));
+      puts("\t\t\tThe deletion process was successful.");
       }
       }
     }
+
 }
 void searchWithId(int id) {
    node* current = head;
@@ -266,6 +269,10 @@ int returnId(const char*name)
  bool strCompare(const char* str1,const char* str2)
 {
    int flag=0;
+   int L1=0,L2=0;
+   while(str1[L1]!='\0')L1++;//length 1
+   while(str2[L2]!='\0')L2++;//length 2
+   if(L1==L2){
    for(int i=0;str2[i]!='\0';i++)
    {
       if(str2[i]==str1[i])flag=1;
@@ -275,7 +282,8 @@ int returnId(const char*name)
          return flag;
       }
    }
-   return flag;  
+   }
+   return flag;
 }
 
 int length()
