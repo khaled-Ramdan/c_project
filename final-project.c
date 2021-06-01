@@ -297,7 +297,6 @@ int length()
  
    return length;
 }
-}
 void addBook()
 {
    int c;
