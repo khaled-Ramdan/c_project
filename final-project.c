@@ -107,6 +107,7 @@ void printList()
 {
    node *ptr = head;
    int cpyNum=1;
+   if(length()==0){printf("There is no books stored\n");return;}
    while(ptr->next != NULL) {
       if(ptr->id!=ptr->next->id){//don't print more than with same id
          printf("book name: %-30s\tid: %3d\t Number of copies: %3d\n",ptr->name,ptr->id,cpyNum);   
