@@ -24,6 +24,9 @@ int returnId(const char*name);
 int length();
 bool strCompare(const char* str1,const char* str2);
 void fileReading();
+void total_stored();
+void fileWriting();
+
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -339,4 +342,26 @@ void addBook()
       scanf("\n%d",&c);
       do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
 	}while ( c== 1 );
+}
+void total_stored()
+{
+   printf("Number of total stored books = %d",length());
+}
+void fileWriting()
+{
+   node*tmpNode=head;
+   FILE* myfile;
+   myfile = fopen("record.txt","wb");
+   while (tmpNode!=NULL)
+   {
+      //appending data in file
+      fwrite(&(tmpNode->id),sizeof(tmpNode->id),1,myfile);
+      fwrite(&tmpNode->price,sizeof(tmpNode->price),1,myfile);
+      fwrite(&tmpNode->name,sizeof(tmpNode->name),1,myfile);
+      fwrite(&tmpNode->type,sizeof(tmpNode->type),1,myfile);
+      fwrite(&tmpNode->about,sizeof(tmpNode->about),1,myfile);
+      //counter
+      tmpNode=tmpNode->next;
+   }
+ fclose(myfile);
 }
