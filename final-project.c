@@ -99,7 +99,6 @@ for (i =temp->id; temp != NULL&&temp->id == id; i++)
 	c++;
 	temp = temp->next;
     }
-printf("Number of copies:");
 return c;
 }
 
@@ -129,7 +128,7 @@ void checkNameWithId(int id, int price,char*name,char*type,char*about)
        int cpyNum;
          printf("Enter number of copies: ");scanf("%d",&cpyNum);
          for(int i=0;i<cpyNum;i++)sortedAppend(id,price,name,type,about);
-          printf("Book is added successfuly\n");
+          printf("\t\t\tBook is added successfuly\n");
    }
    else{
    while (current!=NULL)
@@ -239,18 +238,38 @@ void delete_book()
 
 }
 void searchWithId(int id) {
-   node* current = head;
-   if(head == NULL) {  //if list is empty
-      printf("There is no data, list is empty\n");
-      return;
-   }
-   while(current->id != id) {  //navigate through list
-      if(current->next == NULL) {printf("Book not found\n");return;} //if it is last node
-      else current = current->next;//go to next link
-   }
-   //if data found, display the current node
-   printf("name: %-30s\ttype: %-12s\tprice: %2d\tid: %3d\tabout?: %s\n",current->name,current->type,current->price,current->id,current->about);
-   return;
+system("cls");
+
+	 node*current = head;
+	if (head == NULL) {  //if list is empty
+		printf("There is no data, list is empty\n");
+		return;
+	}
+	while (current->id != id) {  //navigate through list
+		if (current->next == NULL) { printf("Book not found\n"); return; } //if it is last node
+		else current = current->next;//go to next link
+	}
+   drawforsearch();
+	//if data found, display the current node
+	gotoxy(16, 7);
+	printf("\t\tname:    %-s\n", current->name);
+
+	gotoxy(16, 8);
+	printf("\t\ttype:   %s\n", current->type);
+
+	gotoxy(16, 9);
+	printf("\t\tprice:   %d\n", current->price);
+
+	gotoxy(16, 10);
+	printf("\t\tid:      %d\n", current->id);
+
+   gotoxy(16, 11);
+	printf("\t\tNumber of copies:   %d\n", countbooks(current->id));
+
+	gotoxy(16, 12);
+	printf("\t\tAbout:   %s\n", current->about);
+	gotoxy(16, 17);
+	return;
 }
 	
 int returnId(const char*name)
