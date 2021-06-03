@@ -26,6 +26,7 @@ bool strCompare(const char* str1,const char* str2);
 void fileReading();
 void total_stored();
 void fileWriting();
+void displayBook();
 
 void main() {
    //temporary used elements
@@ -364,4 +365,31 @@ void fileWriting()
       tmpNode=tmpNode->next;
    }
  fclose(myfile);
+}
+
+void displayBook()
+{
+   printf("\t\t\t\tDisplaying books\n");
+   int check=0;
+   do{
+       printf("[1] Display all books with shrot informations\n[2] Display one book with all informations\n");
+      printf("choosen way: ");
+      scanf("%d",&check);
+   }while(check!=1&&check!=2);
+   switch (check)
+   {
+   case 1:
+      {
+         printList();
+      break;
+      }
+      case 2:
+      {
+         searchBook();
+         break;
+      }
+   default:
+   printf("Erorr, can't take a decesion\n");
+      break;
+   }
 }
