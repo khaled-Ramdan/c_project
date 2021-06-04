@@ -27,7 +27,8 @@ void fileReading();
 void total_stored();
 void fileWriting();
 void displayBook();
-
+void searchBook();
+int signIn();
 void main() {
    //temporary used elements
     char tmpName[30];
@@ -392,4 +393,83 @@ void displayBook()
    printf("Erorr, can't take a decesion\n");
       break;
    }
+}
+void searchBook()
+{
+   int check=0;
+   char temp[30];
+   do{
+   printf("\t\t\t[1] Search with name\n\t\t\t[2] Search with ID\n\t\t\t[3] Search with type\n\t\tchoosen way: ");
+   scanf("%d",&check);
+   }while(check!=1&&check!=2&&check!=3);
+   switch (check)
+   {
+   case 1:
+      {
+         printf("Enter a book name to search: ");
+         scanf("\n");scanf("%[^\n]",temp);
+         searchWithId(returnId(temp));
+         break;
+      }
+      case 2:
+      {
+         printf("Enter a book ID to search: ");
+         int id;
+         scanf("%d",&id);
+         searchWithId(id);
+         break;
+      }
+         case 3:
+      {
+         printf("Enter a book type to search: ");
+         scanf("\n");scanf("%[^\n]",temp);
+         searchWithType(temp);
+         break;
+         }
+      
+   default:
+      printf("Error, can't take a desision!!\n");
+      break;
+   }
+}
+int signIn()
+{
+
+   //defulat pass
+   char user[30]={"admin"};char userTemp[30];
+   char password[10]={"0000"};char passwordTemp[10];
+   //reading edited password from file
+   FILE*manage;
+   manage = fopen("manage.txt","rb");
+   if(manage==NULL)printf("Defult password activated!!!\n");
+   else{
+      fread(user,30,1,manage);
+      fread(password,10,1,manage);
+   }
+   //checking
+   printf("\t\t\t\t\t*Welcome in the book data base program*\nplease sgin in to get acsess\n");
+   printf("\t\t\tUser name: ");scanf("%s",userTemp);
+   printf("\t\t\tPassword: ");scanf("%s",passwordTemp);
+   int c;char ch;
+   while( strCompare(userTemp,user)!=1 || strCompare(passwordTemp,password)!=1 )
+   {
+      printf("Wrong user name or password. Enter -1 to close the program or any key to resign in: ");
+      scanf("%d",&c);
+      if (c== -1)return -1;
+      else
+      {
+          
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
+
+      printf("\t\t\tUser name: ");scanf("%s",userTemp);
+      printf("\t\t\tPassword: ");scanf("\n");scanf("%s",passwordTemp);
+      }
+   }
+   printf("\n\nPassword Match!\nLOADING");
+		for (int z = 0; z <70; z++)
+		{
+			delay(10000000);
+		}
+
+   return 1;
 }
