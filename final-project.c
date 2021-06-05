@@ -31,6 +31,7 @@ void displayBook();
 void updatePrice();
 void searchBook();
 int signIn();
+void manageSecurity();
 void choose();
 void menu();
 void End();
@@ -39,13 +40,6 @@ void drawforsearch(void);
 void gotoxy(int , int );
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
-	//temporary used elements
-	char tmpName[30];
-	char tmpType[30];
-	char tmpAbout[100];
-	int tmpPrice;
-	int tmpId;
-	node*tmpNode;
 	//reading from the file
 	static int dontRepeat = 0;
 	static int flagSingIn;
@@ -525,6 +519,28 @@ int signIn()
 		}
 
    return 1;
+}
+void manageSecurity(){
+   char user[30];
+   char password[10];
+    if(signIn()==1)
+   {
+      printf("You can change the user name and password\n");
+      printf("Enter new user name: ");
+      scanf("%s",user);
+      printf("Enter new password: ");
+      scanf("%s",password);
+      FILE*manage;
+      manage = fopen("manage.txt","wb");
+      fwrite(user,30,1,manage);
+      fwrite(password,10,1,manage);
+      fclose(manage);
+   }
+   else
+   {
+      printf("End of the program\n");
+      fun[7]();
+   }
 }
 void updatePrice()
 {
