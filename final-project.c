@@ -12,6 +12,7 @@ struct Node {
 };
 typedef struct Node node;
 struct Node *head = NULL;
+int choss=100;
 void sortedAppend(int id, int price,char*name,char*type,char*about);
 void checkNameWithId(int id, int price,char*name,char*type,char*about);
 void addBook();
@@ -30,16 +31,67 @@ void displayBook();
 void updatePrice();
 void searchBook();
 int signIn();
+void choose();
+void menu();
+void End();
+void draw(void);
+void drawforsearch(void);
+void gotoxy(int , int );
+void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
-   //temporary used elements
-    char tmpName[30];
+	//temporary used elements
+	char tmpName[30];
 	char tmpType[30];
 	char tmpAbout[100];
 	int tmpPrice;
-    int tmpId;
-    node*tmpNode;
-    //reading from the file
-}
+	int tmpId;
+	node*tmpNode;
+	//reading from the file
+	static int dontRepeat = 0;
+	static int flagSingIn;
+	if (dontRepeat == 0){
+	system("color 6");
+	fileReading();//read file after startung
+	flagSingIn = signIn();//sign in only one time
+	}
+	dontRepeat = 1;//breaking main loop
+	if (flagSingIn == 1)
+	{
+		printf("\n\n\t\t\t\t\t\t WELCOME to the book date base program.");
+		menu();
+		int num;
+		do {
+			printf("\n\n\n\n\n   \t\t\t\t\t\t choose a Number: ");
+			scanf("%d", &num);
+		} while (num < 1 || num > 8);
+		system("cls");//new
+		fun[num - 1]();
+		if (choss == 0) { printf("Program Ended\n"); fileWriting();return 0; }
+		do {
+			choose();
+			do {
+			      printf("\n\n\t\tchoosen Number: ");
+			      scanf("%d", &choss);
+			} while (choss != 1 && choss != 2);
+			if (choss == 1)
+			{
+			   system("cls");
+			   fun[num - 1]();
+			}
+		  } while (choss == 1);
+
+			if (choss == 2)
+			{
+			  main();
+			}
+	}
+	else
+	{
+	printf("Program Ended\n");
+	return 0;
+	}
+	system("pause");
+	}
 void fileReading()
 {
 	//temporary variables to be read
@@ -518,4 +570,107 @@ void updatePrice()
     }
     printf("\t\t\tbook with ID: %d is not found !!!\n",ID);
 }
+}
+void choose()
+{
+	printf("\n\t\t\t\t");
+	for (int i = 0; i < 57; i++)
+	{
+	   printf("#");
+	}
+	printf("\n\t\t\t\t#\t\t1-Return to the same process\t\t#\n\t\t\t\t#\t\t2-Return to the main menu\t\t#\n");
+	printf("\t\t\t\t");
+	for (int i = 0; i < 57; i++)
+	{
+	   printf("#");
+	}
+}
+void menu()
+{
+	system("cls");
+	system("color 9");
+	printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 WELCOME TO OUR MENU \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n\n");
+	draw();
+	gotoxy(30, 3);
+	printf("[1] Add a book");
+	gotoxy(30, 5);
+	printf("[2] Delete a book");
+	gotoxy(30, 7);
+	printf("[3] search for a book");
+	gotoxy(30, 9);
+	printf("[4] Update book price");
+	gotoxy(30, 11);
+	printf("[5] Get number of books stored");
+	gotoxy(30, 13);
+	printf("[6] Display stored books");
+	gotoxy(30, 15);
+	printf("[7] manage security");
+	gotoxy(30, 17);
+	printf("[8] End program and save");
+}
+void End()
+{    choss=0;
+    system("cls");
+    system("color 4");
+    system("title Program Ended");
+    delaying("Ending.");
+    Sleep(3);
+}
+void gotoxy(int x, int y)
+{
+	COORD c = { x, y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+void draw(void)
+{
+	gotoxy(23, 2);
+	printf("%c", 201);
+		for (int i = 1; i < 40; i++)
+		{
+		   printf("%c", 205);
+		}
+	printf("%c", 187);
+	for (int j = 0; j <17; j++)
+	{
+           gotoxy(23, 3 + j);
+	   printf("%c", 186);
+		for (int i = 1; i < 40; i++)
+		{
+			printf(" ");
+		}
+	   printf("%c", 186);
+	}
+	gotoxy(23, 20); printf("%c", 200);
+		for (int k = 1; k < 40; k++)
+		{
+			printf("%c", 205);
+		}
+	printf("%c", 188);
+}
+void drawforsearch(void)
+{
+	gotoxy(15, 5);
+	printf("%c", 201);
+		for (int i = 1; i < 70; i++)
+		{
+		   printf("%c", 205);
+		}
+	printf("%c", 187);
+		for (int j = 0; j <11; j++)
+		{
+		  gotoxy(15, 6 + j);
+		  printf("%c", 186);
+			for (int i = 1; i < 70; i++)
+			{
+			   printf(" ");
+			}
+		  printf("%c", 186);
+		}
+	gotoxy(15, 16); 
+	printf("%c", 200);
+		for (int k = 1; k < 70; k++)
+		{
+		 printf("%c", 205);
+		}
+	printf("%c", 188);
 }
