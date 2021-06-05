@@ -27,6 +27,7 @@ void fileReading();
 void total_stored();
 void fileWriting();
 void displayBook();
+void updatePrice();
 void searchBook();
 int signIn();
 void main() {
@@ -472,4 +473,49 @@ int signIn()
 		}
 
    return 1;
+}
+void updatePrice()
+{
+    int ID=0;
+    printf("\t\t\t\tUpating book price\n");
+      int check=0;
+   do{
+   printf("\t\t\t[1] Update with name\n\t\t\t[2] Update with ID\n\t\tchoosen way: ");
+   scanf("%d",&check);
+   }while(check!=1&&check!=2);
+   switch (check)
+   {
+      case 1:
+      {
+         char tmp[30];
+         printf("Enter book name: ");
+         scanf("\n");scanf("%[^\n]",tmp);
+         ID=returnId(tmp);
+         break;
+      }
+       case 2:
+      {
+         printf("Enter book ID: ");
+         scanf("%d",&ID);
+         break;
+      }
+      default:
+      printf("\t\t\tError, can't take a desision!!\n");
+      break;
+   }
+   {
+    node* temp = head;
+    while(temp!=NULL){//until last node
+
+        if(temp->id==ID){//finding the desird node
+            printf("Record with id %d Found !!!\n", ID);
+            printf("Enter new price: ");
+            scanf("%d", &temp->price);
+            printf("Updation Successful!!!\n");
+            return;
+        }
+        temp = temp->next;//counter
+    }
+    printf("\t\t\tbook with ID: %d is not found !!!\n",ID);
+}
 }
