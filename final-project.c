@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include<Windows.h>
 struct Node {
 	char name[30];
 	char type[30];
@@ -40,9 +41,9 @@ void drawforsearch(void);
 void gotoxy(int , int );
 void searchWithType(char* type);
 void delay(int);
-void delaying(char [])
+void delaying(char []);
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
-void main() {
+int main() {
 	//reading from the file
 	static int dontRepeat = 0;
 	static int flagSingIn;
@@ -139,7 +140,7 @@ int countbooks(int id)
 {
 int i;
 int c = 0;
-struct node* temp = head;
+node* temp = head;
 while (temp!=NULL)
 {
 	if (temp->id == id)
@@ -528,7 +529,7 @@ void manageSecurity(){
    char password[10];
     if(signIn()==1)
    {
-      printf("You can change the user name and password\n");
+      printf("\nYou can change the user name and password\n");
       printf("Enter new user name: ");
       scanf("%s",user);
       printf("Enter new password: ");
