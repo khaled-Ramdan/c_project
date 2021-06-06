@@ -37,6 +37,8 @@ void End();
 void draw(void);
 void drawforsearch(void);
 void gotoxy(int , int );
+void delaying(char []);
+void delay(int );
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
 	//temporary used elements
@@ -673,4 +675,26 @@ void drawforsearch(void)
 		 printf("%c", 205);
 		}
 	printf("%c", 188);
+}
+void delay(int j)
+{
+  int i, k;
+   for (i = 0; i<j; i++)
+    k = i;
+}
+void delaying(char word[15])
+{
+    system("cls");
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t%s",word);
+    sleep(1);
+    printf(".");
+     sleep(1);
+    printf(".");
+     sleep(1);
+    printf(".");
+     sleep(1);
+    printf(".");
+     sleep(1);
+    printf(".");
+    system("cls");
 }
