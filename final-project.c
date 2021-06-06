@@ -39,6 +39,7 @@ void draw(void);
 void drawforsearch(void);
 void gotoxy(int , int );
 void searchWithType(char* type);
+void delay(int);
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
 	//reading from the file
@@ -709,4 +710,10 @@ void searchWithType(char* type)
       current=current->next;//counter
    }
    if(flag==0)printf("This type of books not found\n");
+}
+void delay(int j)
+{
+int i, k;
+for (i = 0; i<j; i++)
+	k = i;
 }
