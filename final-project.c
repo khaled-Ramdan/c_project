@@ -40,6 +40,7 @@ void drawforsearch(void);
 void gotoxy(int , int );
 void searchWithType(char* type);
 void delay(int);
+void delaying(char [])
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
 	//reading from the file
@@ -632,7 +633,7 @@ void End()
     system("color 4");
     system("title Program Ended");
     delaying("Ending.");
-    Sleep(3);
+    Sleep(100);
 }
 void gotoxy(int x, int y)
 {
@@ -716,4 +717,20 @@ void delay(int j)
 int i, k;
 for (i = 0; i<j; i++)
 	k = i;
+}
+void delaying(char word[15])
+{
+	system("cls");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t%s", word);
+	Sleep(100);
+	printf(".");
+	Sleep(100);
+	printf(".");
+	Sleep(100);
+	printf(".");
+	Sleep(100);
+	printf(".");
+	Sleep(100);
+	printf(".");
+	system("cls");
 }
