@@ -38,6 +38,7 @@ void End();
 void draw(void);
 void drawforsearch(void);
 void gotoxy(int , int );
+void searchWithType(char* type);
 void (*fun[])() ={addBook,delete_book,searchBook,updatePrice,total_stored,displayBook,manageSecurity,End};
 void main() {
 	//reading from the file
@@ -689,4 +690,23 @@ void drawforsearch(void)
 		 printf("%c", 205);
 		}
 	printf("%c", 188);
+}
+
+void searchWithType(char* type)
+{
+   node*current=head;
+   int flag=0,temp=0;
+   while (current!=NULL)//loop in the list
+   {
+      if(strCompare(type,current->type))
+      {
+         flag=1;
+         if(temp!=current->id){//don't print
+            printf("name: %-30s\tprice: %2d\tid: %3d\tabout?: %s\n",current->name,current->price,current->id,current->about);
+         }
+      }
+      temp=current->id;
+      current=current->next;//counter
+   }
+   if(flag==0)printf("This type of books not found\n");
 }
