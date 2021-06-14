@@ -498,7 +498,8 @@ int signIn()
       fread(password,10,1,manage);
    }
    //checking
-   printf("\t\t\t\t\t*Welcome in the book data base program*\nplease sgin in to get acsess\n");
+   printf("\n\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 WELCOME TO OUR BOOK DATA BASE PROGRAM \xB2\xB2\xB2\xB2\xB2\xB2\xB2\n\n");
+	printf("\n\n\xB0\xB0\xB0\xB0\xB0 ENTER USER NAME AND PASSWORD TO SIGN IN \xB0\xB0\xB0\xB0\xB0\n\n");
    printf("\t\t\tUser name: ");scanf("%s",userTemp);
    printf("\t\t\tPassword: ");scanf("%s",passwordTemp);
    int c;char ch;
