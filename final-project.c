@@ -59,8 +59,10 @@ int main() {
 		menu();
 		int num;
 		do {
+         char ch;
 			printf("\n\n\n\n\n   \t\t\t\t\t\t choose a Number: ");
 			scanf("%d", &num);
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
 		} while (num < 1 || num > 8);
 		system("cls");//new
 		fun[num - 1]();
@@ -249,16 +251,22 @@ void delete_book()
      char name[30];
     puts("\t\t\t\t\tBy any way you want to delete" );
      do{
+        char ch;
         printf("\t\t\t[1] Delete by id\n\t\t\t[2] to delete by name\n\tchoosen number: ");
+      do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
         scanf("%d",&x);
      }
      while( x != 1 && x != 2);
     if( x == 1)
     {
+       char ch;
         printf("please, Enter the id to delete: ");
         scanf("%d",&id );
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
+         ch='\0';
         printf("How many copies? : ");
         scanf("%d",&cpyNum);
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
       int count=countbooks(id);
       if (count==0)printf("Id not found!!\n");
       else if(cpyNum<0||cpyNum>count&&count!=0)printf("Number of copies is out of range\n ");
@@ -393,6 +401,7 @@ void addBook()
       checkNameWithId(tmpId,tmpPrice,tmpName,tmpType,tmpAbout);
 		printf("\t\t\t[1] = add another book.\n\t\t\t[other] = finish\n\t\t\tchoosen way: ");
       scanf("\n%d",&c);
+      
       do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
 	}while ( c== 1 );
 }
@@ -427,6 +436,8 @@ void displayBook()
        printf("[1] Display all books with shrot informations\n[2] Display one book with all informations\n");
       printf("choosen way: ");
       scanf("%d",&check);
+       char ch;
+       do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
    }while(check!=1&&check!=2);
    switch (check)
    {
@@ -452,6 +463,8 @@ void searchBook()
    do{
    printf("\t\t\t[1] Search with name\n\t\t\t[2] Search with ID\n\t\t\t[3] Search with type\n\t\tchoosen way: ");
    scanf("%d",&check);
+    char ch;
+   do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
    }while(check!=1&&check!=2&&check!=3);
    switch (check)
    {
@@ -467,6 +480,8 @@ void searchBook()
          printf("Enter a book ID to search: ");
          int id;
          scanf("%d",&id);
+          char ch;
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
          searchWithId(id);
          break;
       }
@@ -555,6 +570,8 @@ void updatePrice()
    do{
    printf("\t\t\t[1] Update with name\n\t\t\t[2] Update with ID\n\t\tchoosen way: ");
    scanf("%d",&check);
+   char ch;
+   do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
    }while(check!=1&&check!=2);
    switch (check)
    {
@@ -570,6 +587,8 @@ void updatePrice()
       {
          printf("Enter book ID: ");
          scanf("%d",&ID);
+         char ch;
+         do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
          break;
       }
       default:
