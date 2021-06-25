@@ -253,8 +253,8 @@ void delete_book()
      do{
         char ch;
         printf("\t\t\t[1] Delete by id\n\t\t\t[2] to delete by name\n\tchoosen number: ");
-      do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
         scanf("%d",&x);
+	do{scanf("%c",&ch);}while (ch!='\n');//make sure there is a one char or repeat not to be located for next variable
      }
      while( x != 1 && x != 2);
     if( x == 1)
